@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic | Official Store</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/150/000000/FFFFFF?text=MC" alt="Mystic Logo">
+    </div>
+    <h1 class="logo-text">MYSTIC</h1>
+    <nav>
+        <a href="#collection">Shop</a>
+        <a onclick="toggleCart()" id="cart-nav-link" class="cart-btn">🛒 Cart (0)</a>
+        <a href="https://instagram.com/mystic_iraq" target="_blank">Instagram</a>
+    </nav>
+</header>
+
+<div class="container" id="collection">
+    <div class="product-grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/300?text=Sans+Plush" alt="Sans">
+            <div class="card-info">
+                <h3>Sans Plush</h3>
+                <span class="price">35,000 IQD</span>
+                <button class="buy-btn" onclick="addToCart('Sans Plush', 35000)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300?text=Uzi+Plush" alt="Uzi">
+            <div class="card-info">
+                <h3>Uzi Plush</h3>
+                <span class="price">40,000 IQD</span>
+                <button class="buy-btn" onclick="addToCart('Uzi Plush', 40000)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cart-sidebar">
+    <div class="cart-header">
+        <h2 style="margin:0;">Your Bag</h2>
+        <button onclick="toggleCart()" class="close-cart">&times;</button>
+    </div>
+    
+    <div id="cart-items-display">
+        <p style="text-align:center; color:#555; margin-top:20px;">Your bag is empty.</p>
+    </div>
+    
+    <div class="total-section">
+        <h3>Total: <span id="cart-total-price">0</span> IQD</h3>
+    </div>
+
+    <hr style="border: 0.5px solid #333; margin: 20px 0;">
+
+    <form id="orderForm">
+        <h3>Shipping Details</h3>
+        <input type="text" id="custName" placeholder="Full Name" required>
+        <input type="text" id="custLoc" placeholder="Neighborhood / Street" required>
+        <input type="tel" id="custPhone" placeholder="Phone Number" required>
+        <textarea id="orderSummaryHidden" readonly style="display:none;"></textarea>
+        <button type="submit" class="submit-btn">Submit Order</button>
+    </form>
+</div>
+
+<footer>
+    <p>© 2024 - 2026 Mystic Store. All Rights Reserved.</p>
+    <p>Established 2024 | Baghdad, Iraq</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

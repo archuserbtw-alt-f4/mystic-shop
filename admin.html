@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mystic Admin | Orders</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #0d0d1a; color: white; padding: 20px; }
+        .order-card { background: #1e1e2f; border: 1px solid #8a2be2; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .order-card h3 { color: #ffcc00; margin: 0; }
+        .details { font-size: 0.9rem; color: #ccc; margin-top: 10px; }
+        .badge { background: #3a0066; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <h1>🔮 Incoming Orders</h1>
+    <div id="admin-list">Waiting for magic orders...</div>
+
+    <script>
+        // USE SAME FIREBASE CONFIG
+        const firebaseConfig = { apiKey: "...", databaseURL: "...", projectId: "..." };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        database.ref('orders').on('value', (snap) => {
+            const container = document.getElementById('admin-list');
+            container.innerHTML = '';
+            snap.forEach((child) => {
+                const o = child.val();
+                container.innerHTML += `
+                    <div class="order-card">
+                        <h3>${o.name} <span class="badge">NEW</span></h3>
+                        <div class="details">
+                            <p>📞 <b>Phone:</b> ${o.phone}</p>
+                            <p>📍 <b>Address:</b> ${o.loc}</p>
+                            <p>🛍️ <b>Items:</b> ${o.items}</p>
+                            <p>📝 <b>Note:</b> ${o.notes}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
